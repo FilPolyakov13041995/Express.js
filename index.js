@@ -11,8 +11,6 @@ app.use(express.json());
 const password = process.env.PASSWORD
 const CONNECTION_STRING = `mongodb+srv://polyakov130495:${password}@filippapp.nw81pqf.mongodb.net/?retryWrites=true&w=majority&appName=FilippApp`;
 
-console.log(password)
-
 const DATABASENAME = "todoappdb";
 let database;
 
