@@ -8,11 +8,9 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-const password = process.env.PASSWORD
 const PORT = process.env.PORT
 
-
-const CONNECTION_STRING = `mongodb+srv://polyakov130495:${password}@filippapp.nw81pqf.mongodb.net/?retryWrites=true&w=majority&appName=FilippApp`;
+const CONNECTION_STRING = process.env.CONNECT_MONGODB_URL;
 
 const DATABASENAME = "todoappdb";
 let database;
