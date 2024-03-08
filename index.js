@@ -9,15 +9,18 @@ app.use(cors());
 app.use(express.json());
 
 const password = process.env.PASSWORD
+const PORT = process.env.PORT
+
+
 const CONNECTION_STRING = `mongodb+srv://polyakov130495:${password}@filippapp.nw81pqf.mongodb.net/?retryWrites=true&w=majority&appName=FilippApp`;
 
 const DATABASENAME = "todoappdb";
 let database;
 
-app.listen(5038, () => {
+app.listen(PORT, () => {
     MongoClient.connect(CONNECTION_STRING, (error, client) => {
         database = client.db(DATABASENAME);
-        console.log("Server started on port 5038, MongoDB connected successfully");
+        console.log("Server started on port 5038, MongoDB connected successfully " + PORT);
     })
 })
 
