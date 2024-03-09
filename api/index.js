@@ -17,11 +17,6 @@ app.get("/", (request, response) => {
     response.send("<h1>Добро пожаловать на сервер!!!</h1>");
 })
 
-// app.get("/api/todoapp/GetNotes", (request, response) => {
-//     database.collection("todoappcollection").find({}).toArray((error, result) => {
-//         response.send(result)
-//     })
-// })
 app.get("/api/todoapp/GetNotes", async (request, response) => {
   try {
     const collection = database.collection("todoappcollection");
@@ -33,15 +28,6 @@ app.get("/api/todoapp/GetNotes", async (request, response) => {
   }
 });
 
-// app.post("/api/todoapp/AddNotes", (request, response) => {
-//     database.collection("todoappcollection").count({}, function(error, numOfDocs) {
-//       database.collection("todoappcollection").insertOne({
-//         id: (numOfDocs + 1).toString(),
-//         description: request.body.newNotes
-//       });
-//       response.json("Added Successfully");
-//     });
-// });
 app.post("/api/todoapp/AddNotes", async (request, response) => {
   try {
     const collection = database.collection("todoappcollection");
@@ -57,12 +43,6 @@ app.post("/api/todoapp/AddNotes", async (request, response) => {
   }
 });
 
-// app.delete("/api/todoapp/DeleteNotes", (request, response) => {
-//     database.collection("todoappcollection").deleteOne({
-//         id: request.query.id
-//     });
-//     response.json("Deleted Successfully")
-// })
 app.delete("/api/todoapp/DeleteNotes", async (request, response) => {
   try {
     const collection = database.collection("todoappcollection");
@@ -75,13 +55,6 @@ app.delete("/api/todoapp/DeleteNotes", async (request, response) => {
     response.status(500).send("Ошибка сервера");
   }
 });
-
-// app.listen(PORT, () => {
-//     MongoClient.connect(CONNECTION_STRING, (error, client) => {
-//         database = client.db(DATABASENAME);
-//         console.log(`Server started on port ${PORT}, MongoDB connected successfully`);
-//     })
-// })
 
 async function startServer() {
   try {
