@@ -15,20 +15,12 @@ const CONNECTION_STRING = process.env.CONNECT_MONGODB_URL;
 const DATABASENAME = "todoappdb";
 let database;
 
-app.listen(PORT, () => {
-    MongoClient.connect(CONNECTION_STRING, (error, client) => {
-        database = client.db(DATABASENAME);
-        console.log("Server started on port 5038, MongoDB connected successfully " + PORT);
-    })
-})
 
 app.get("/api/todoapp/GetNotes", (request, response) => {
     database.collection("todoappcollection").find({}).toArray((error, result) => {
         response.send(result)
     })
 })
-
-
 
 app.post("/api/todoapp/AddNotes", (request, response) => {
     database.collection("todoappcollection").count({}, function(error, numOfDocs) {
@@ -45,6 +37,13 @@ app.delete("/api/todoapp/DeleteNotes", (request, response) => {
         id: request.query.id
     });
     response.json("Deleted Successfully")
+})
+
+app.listen(PORT, () => {
+    MongoClient.connect(CONNECTION_STRING, (error, client) => {
+        database = client.db(DATABASENAME);
+        console.log("Server started on port 5038, MongoDB connected successfully " + PORT);
+    })
 })
 
 module.exports = app;
